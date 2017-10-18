@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1.0">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+/* Add a gray background color and some padding to the footer */
+#footer {
+	position: absolute;
+	bottom: 100px;
+	width: 100%;
+	height: 70px;
+	background: #ccc;
+	background-color: #f2f2f2;
+}
+
+#home_pic {
+	background-image: url("homeimg.jpg");
+	width: 100%;
+	height: 100%;
+}
+
+#map {
+	height: 50%;
+	width: 50%;
+	overflow:hidden;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#trafficinfo{
+	height: 50%;
+	width: 50%;
+
+
+}
+</style>
+<script>
+	var map;
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			center : {
+				lat : -34.397,
+				lng : 150.644
+			},
+			zoom : 8
+		});
+	}
+</script>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYmmebNUEIj0TbZHO5KTocSPS04b-bUn0&callback=initMap"
+	async defer></script>
+</head>
+<body>
+
+
+
+	<div class="col-sm-6" id="map"></div>
+
+	<div class="col-sm-6">
+		<div class="container">
+			<h2>교통상황</h2>
+			<p>서울시의 교통상황을 분석하고 어떠한 운송수단이 원할한지, 어떠한 구가 교통환경이 좋은지 분석합니다.</p>
+			<table class="table" id="trafficinfo">
+				<thead>
+					<tr>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Default</td>
+						<td>Defaultson</td>
+						<td>def@somemail.com</td>
+					</tr>
+					<tr class="success">
+						<td>Success</td>
+						<td>Doe</td>
+						<td>john@example.com</td>
+					</tr>
+					<tr class="danger">
+						<td>Danger</td>
+						<td>Moe</td>
+						<td>mary@example.com</td>
+					</tr>
+					<tr class="info">
+						<td>Info</td>
+						<td>Dooley</td>
+						<td>july@example.com</td>
+					</tr>
+					<tr class="warning">
+						<td>Warning</td>
+						<td>Refs</td>
+						<td>bo@example.com</td>
+					</tr>
+					<tr class="active">
+						<td>Active</td>
+						<td>Activeson</td>
+						<td>act@example.com</td>
+					</tr>
+				</tbody>
+			</table>
+
+
+		</div>
+	</div>
+
+
+
+	<footer class="container-fluid text-center">
+		<p>© 2017-2018 M.I.L.E Follow us</p>
+	</footer>
+</body>
+</html>
