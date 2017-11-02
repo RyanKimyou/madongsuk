@@ -49,32 +49,48 @@ html, body {
 	height: 50%;
 	width: 50%;
 }
-
-
 </style>
 <script>
-var citymap = { gudi: {center: {lat: 37.496309, lng: 126.855552
-},population:27},
-youngdungpo: {	center: {lat: 37.521050, lng: 126.909066
-},population:80},
-youngsangu: {  center: {lat: 37.527321, lng: 126.967072},
-population:30},
-vancouver: {	center: {lat: 37.480604, lng: 126.975352},
-population:60}
-} 
-; 
+	var citymap = {
+		gudi : {
+			center : {
+				lat : 37.496309,
+				lng : 126.855552
+			},
+			population : 27
+		},
+		youngdungpo : {
+			center : {
+				lat : 37.521050,
+				lng : 126.909066
+			},
+			population : 80
+		},
+		youngsangu : {
+			center : {
+				lat : 37.527321,
+				lng : 126.967072
+			},
+			population : 30
+		},
+		vancouver : {
+			center : {
+				lat : 37.480604,
+				lng : 126.975352
+			},
+			population : 60
+		}
+	};
 
 
 	var map;
 	function initMap() {
 		map = new google.maps.Map(document.getElementById('map'), {
-		
 			center : {
 				lat : 37.503784,
 				lng : 126.970696
 			},
 			zoom : 11
-			
 		}
 		);
 		for (var city in citymap) {
@@ -106,58 +122,77 @@ population:60}
 	<div class="col-sm-6">
 		<div class="container">
 			<h2>교통상황</h2>
-			<p>서울시의 교통상황을 분석하고 어떠한 운송수단이 원할한지, 어떠한 구가 교통환경이 좋은지 분석합니다.</p>				
+			<p>서울시의 교통상황을 분석하고 어떠한 운송수단이 원할한지, 어떠한 구가 교통환경이 좋은지 분석합니다.</p>
 			<table class="table" id="safeinfo">
 				<thead>
 					<tr>
+
+						<th>해당지역</th>
 						<th>교통수단</th>
-						<th>위치</th>
 						<th>교통만족도</th>
 						<th>통근통학(소요시간)</th>
 						<th>비고</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="success">
 					<tr>
-						<td>Default</td>
-						<td>Defaultson</td>
+						<td>종로구</td>
+						<td>중구</td>
+						<td>용산</td>
+						<td>def@somemail.com</td>
 						<td>def@somemail.com</td>
 					</tr>
 					<tr class="success">
-						<td>Success</td>
+						<td>중구</td>
 						<td>Doe</td>
 						<td>john@example.com</td>
+						<td>def@somemail.com</td>
+						<td>def@somemail.com</td>
 					</tr>
 					<tr class="danger">
-						<td>Danger</td>
+						<td>용산구</td>
 						<td>Moe</td>
 						<td>mary@example.com</td>
+						<td>def@somemail.com</td>
+						<td>def@somemail.com</td>
 					</tr>
 					<tr class="info">
-						<td>Info</td>
+						<td>성동구</td>
 						<td>Dooley</td>
 						<td>july@example.com</td>
+						<td>def@somemail.com</td>
+						<td>def@somemail.com</td>
 					</tr>
 					<tr class="warning">
-						<td>Warning</td>
+						<td>광진구</td>
 						<td>Refs</td>
 						<td>bo@example.com</td>
+						<td>def@somemail.com</td>
+						<td>def@somemail.com</td>
 					</tr>
-					<tr class="active">
-						<td>Active</td>
-						<td>Activeson</td>
-						<td>act@example.com</td>
+					<tr class="warning">
+						<td>동대문구</td>
+						<td>Refs</td>
+						<td>bo@example.com</td>
+						<td>def@somemail.com</td>
+						<td>def@somemail.com</td>
 					</tr>
-					<tr class="active">
-						<td>Active</td>
-						<td>Activeson</td>
-						<td>act@example.com</td>
+					<tr class="warning">
+						<td>중랑구</td>
+						<td>Refs</td>
+						<td>bo@example.com</td>
+						<td>def@somemail.com</td>
+						<td>def@somemail.com</td>
 					</tr>
-					<tr class="active">
-						<td>Active</td>
-						<td>Activeson</td>
-						<td>act@example.com</td>
+					<tr class="warning">
+						<td>성북구</td>
+						<td>Refs</td>
+						<td>bo@example.com</td>
+						<td>def@somemail.com</td>
+						<td>def@somemail.com</td>
 					</tr>
+
+
 				</tbody>
 			</table>
 
