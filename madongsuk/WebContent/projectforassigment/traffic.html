@@ -49,11 +49,13 @@ html, body {
 	height: 50%;
 	width: 50%;
 }
+
 th, table, td {
-    border: 1px solid black;
+	border: 1px solid black;
 }
 </style>
 <script>
+
 	var citymap = {
 		gudi : {
 			center : {
@@ -86,7 +88,8 @@ th, table, td {
 	};
 
 
-	var map;
+	var map,
+		infoWindow;
 	function initMap() {
 		map = new google.maps.Map(document.getElementById('map'), {
 			center : {
@@ -95,7 +98,9 @@ th, table, td {
 			},
 			zoom : 11
 		}
+
 		);
+		infoWindow = new google.maps.InfoWindow();
 		for (var city in citymap) {
 			// Add the circle for this city to the map.
 			var cityCircle = new google.maps.Circle({
@@ -119,6 +124,19 @@ th, table, td {
 
 			$(temp).parent().show();
 		})
+
+		$("#trafficinfo tbody tr").click(function() {
+			var lat = parseFloat($(this).find('td').eq(4).text());
+			var lng = parseFloat($(this).find('td').eq(5).text());
+			var content = $(this).find('td').eq(6).html();
+			
+			var latLng = new google.maps.LatLng(lat, lng);
+			infoWindow.setPosition(latLng);
+			infoWindow.setContent(content);
+			infoWindow.open(map);
+			console.log("111");
+			alert(lat);
+		});
 	})
 </script>
 <script
@@ -136,8 +154,8 @@ th, table, td {
 			<h2>교통상황</h2>
 			<p>서울시의 교통상황을 분석하고 어떠한 운송수단이 원할한지, 어떠한 구가 교통환경이 좋은지 분석합니다.</p>
 			<div id="input-form">
-				이름 : <input type="text" id="keyword1" />
-					<button onclick="press();">교통 혼잡 구역 알아보기</button>
+				이름 : <input type="text" id="keyword1" /> 
+			<!-- 	<input type="button" value="교통 혼잡 구역 알아보기" id="cc" /> -->
 			</div>
 			<table class="table" id="trafficinfo">
 				<thead>
@@ -147,107 +165,137 @@ th, table, td {
 						<th>추천 교통수단(만족도 대비)</th>
 						<th>교통만족도(10점)</th>
 						<th>통근통학(소요시간)</th>
+						<th>lat</th>
+						<th>lng</th>
 						<th>비고</th>
 					</tr>
 				</thead>
-				<tbody >
+				<tbody>
 					<tr class="success">
 						<td>종로구</td>
 						<td>지하철</td>
 						<td>6.11</td>
 						<td>33.1</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="success">
 						<td>중구</td>
 						<td>버스</td>
 						<td>6.38</td>
 						<td>32.4</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="danger">
 						<td>용산구</td>
 						<td>버스</td>
 						<td>6.27</td>
 						<td>36.8</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="info">
 						<td>성동구</td>
 						<td>Dooley</td>
 						<td>6.1</td>
 						<td>31.45</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="warning">
 						<td>광진구</td>
 						<td>지하철</td>
 						<td>6.44</td>
 						<td>30.8</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="warning">
 						<td>동대문구</td>
 						<td>버스</td>
 						<td>6.16</td>
 						<td>32</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="warning">
 						<td>중랑구</td>
 						<td>버스</td>
 						<td>6.33</td>
 						<td>35.8</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="warning">
 						<td>성북구</td>
 						<td>지하철</td>
 						<td>6.25</td>
 						<td>36.2</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="warning">
 						<td>강서구</td>
 						<td>버스</td>
 						<td>6.68</td>
 						<td>36.2</td>
-						<td>교통만족도 가장 높음.</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>교통만족도 가장높음!!</td>
 					</tr>
 					<tr class="success">
 						<td>종로구</td>
 						<td>지하철</td>
 						<td>6.11</td>
 						<td>33.1</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="success">
 						<td>중구</td>
 						<td>버스</td>
 						<td>6.38</td>
 						<td>32.4</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="danger">
 						<td>용산구</td>
 						<td>버스</td>
 						<td>6.27</td>
 						<td>36.8</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="info">
 						<td>성동구</td>
 						<td>Dooley</td>
 						<td>6.1</td>
 						<td>31.45</td>
-						<td>-</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="warning">
 						<td>광진구</td>
 						<td>지하철</td>
 						<td>6.44</td>
 						<td>30.8</td>
-						<td>-</td>
+						<td>37.53</td>
+						<td>126.9635</td>
+						<td>위험발생지역!!</td>
 					</tr>
 
 
@@ -257,10 +305,7 @@ th, table, td {
 
 		</div>
 	</div>
-	<div class="col-sm-6">
-	
-	
-	</div>
+	<div class="col-sm-6"></div>
 
 
 

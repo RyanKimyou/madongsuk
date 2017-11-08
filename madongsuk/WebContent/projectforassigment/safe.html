@@ -43,8 +43,9 @@ html, body {
 	height: 50%;
 	width: 50%;
 }
+
 th, table, td {
-    border: 1px solid black;
+	border: 1px solid black;
 }
 </style>
 <script>
@@ -106,7 +107,7 @@ th, table, td {
 			population : 60
 		}
 	};
-	var map;
+	var map, infoWindow;
 	function initMap() {
 		map = new google.maps.Map(document.getElementById('mapsafe'), {
 			center : {
@@ -114,7 +115,7 @@ th, table, td {
 				lng : 127.001858
 			},
 			zoom : 12
-		});
+		}); infoWindow = new google.maps.InfoWindow();
 		for (var city in citymap) {
 			// Add the circle for this city to the map.
 			var cityCircle = new google.maps.Circle({
@@ -132,15 +133,27 @@ th, table, td {
 	}
 
 
-    $(document).ready(function() {
-        $("#keyword").keyup(function() {
-            var k = $(this).val();
-            $("#safeinfo > tbody > tr").hide();
-            var temp = $("#safeinfo > tbody > tr > td:nth-child(4n+1):contains('" + k + "')");
+	$(document).ready(function() {
+		$("#keyword").keyup(function() {
+			var k = $(this).val();
+			$("#safeinfo > tbody > tr").hide();
+			var temp = $("#safeinfo > tbody > tr > td:nth-child(4n+1):contains('" + k + "')");
 
-            $(temp).parent().show();
-        })
-    })
+			$(temp).parent().show();
+		}) 
+		$("#safeinfo tbody tr").click(function() {
+			var lat = parseFloat($(this).find('td').eq(5).text());
+			var lng = parseFloat($(this).find('td').eq(6).text());
+			var content = $(this).find('td').eq(7).html();
+
+			var latLng = new google.maps.LatLng(lat, lng);
+			infoWindow.setPosition(latLng);
+			infoWindow.setContent(content);
+			infoWindow.open(map);
+			console.log("111");
+			alert(lat);
+		});
+	})
 </script>
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYmmebNUEIj0TbZHO5KTocSPS04b-bUn0&callback=initMap"
@@ -169,6 +182,9 @@ th, table, td {
 						<!-- 서울시 평균 강간/추행 발생 대비 구 별 발생율  -->
 						<th>지역안전도(서울시 전체 평균 - 100 - 대비)</th>
 						<!-- 서울시 평균 검거율 대비 구별 검거율 -->
+						<th>lat</th>
+						<th>lng</th>
+						<th>비고</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -178,6 +194,9 @@ th, table, td {
 						<td>0.963</td>
 						<td>0.992</td>
 						<td>134</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="danger">
 						<td>중구</td>
@@ -185,6 +204,9 @@ th, table, td {
 						<td>0.669</td>
 						<td>0.825</td>
 						<td>93.4</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="info">
 						<td>용산구</td>
@@ -192,6 +214,9 @@ th, table, td {
 						<td>0.685</td>
 						<td>1.045</td>
 						<td>95.7</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="warning">
 						<td>성동구</td>
@@ -199,6 +224,9 @@ th, table, td {
 						<td>0.790</td>
 						<td>0.43</td>
 						<td>110.3</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="success">
 						<td>광진구</td>
@@ -206,6 +234,9 @@ th, table, td {
 						<td>0.622</td>
 						<td>1.163</td>
 						<td>86.9</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="danger">
 						<td>동대문구</td>
@@ -213,6 +244,9 @@ th, table, td {
 						<td>0.757</td>
 						<td>1.263</td>
 						<td>105.7</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="info">
 						<td>중랑구</td>
@@ -220,6 +254,9 @@ th, table, td {
 						<td>0.781</td>
 						<td>0.683</td>
 						<td>109.1</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 					<tr class="warning">
 						<td>성북구</td>
@@ -227,6 +264,9 @@ th, table, td {
 						<td>0.714</td>
 						<td>0.642</td>
 						<td>99.7</td>
+						<td>37.526371</td>
+						<td>126.973620</td>
+						<td>위험발생지역!!</td>
 					</tr>
 				</tbody>
 			</table>
